@@ -1,31 +1,23 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STARHOOK</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #8a63f2;
-            --primary-dark: #6a5acd;
-            --discord: #5865F2;
-            --bg: #121212;
-            --glass: rgba(30, 30, 30, 0.5);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --text: rgba(255, 255, 255, 0.9);
-            --text-secondary: rgba(255, 255, 255, 0.7);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            --primary: #5865F2;
+            --secondary: #1E1E1E;
+            --accent: #EB459E;
+            --text: #FFFFFF;
+            --card-bg: rgba(30, 30, 30, 0.9);
+            --border-radius: 20px;
+            --blur: 10px;
         }
         
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: #000000;
             color: var(--text);
             margin: 0;
             padding: 0;
@@ -33,294 +25,197 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-attachment: fixed;
-            overflow-x: hidden;
-        }
-        
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 30%, rgba(138, 99, 242, 0.15) 0%, transparent 40%),
-                        radial-gradient(circle at 80% 70%, rgba(106, 90, 205, 0.15) 0%, transparent 40%);
-            pointer-events: none;
-            z-index: -1;
-        }
-        
-        header {
-            width: 100%;
-            padding: 25px 0;
-            text-align: center;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            background: var(--glass);
-            border-bottom: 1px solid var(--glass-border);
-            position: relative;
-            z-index: 10;
-        }
-        
-        h1 {
-            margin: 0;
-            color: white;
-            font-size: 2.8rem;
-            font-weight: 700;
-            background: linear-gradient(to right, #8a63f2, #6a5acd);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 2px 10px rgba(138, 99, 242, 0.3);
-            letter-spacing: 1px;
         }
         
         .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            flex: 1;
-            padding: 30px;
-            width: 100%;
-        }
-        
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 14px 28px;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-decoration: none;
-            border: none;
-            outline: none;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent 10%, rgba(255, 255, 255, 0.2) 50%, transparent 90%);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
-        }
-        
-        .btn:hover::after {
-            transform: translateX(100%);
-        }
-        
-        .discord-btn {
-            background-color: var(--discord);
-            color: white;
-            margin-top: 20px;
-        }
-        
-        .discord-btn:hover {
-            background-color: #4752c4;
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 8px 25px rgba(88, 101, 242, 0.4);
-        }
-        
-        .card-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
+            width: 90%;
             max-width: 1200px;
-            margin: 30px 0;
+            margin: 2rem auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
         
         .card {
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            background: var(--glass);
-            border-radius: 25px;
-            padding: 30px;
-            width: 320px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            border: 1px solid var(--glass-border);
-            transition: all 0.4s ease;
-            overflow: hidden;
-            position: relative;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
         }
         
-        .card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(138, 99, 242, 0.1) 0%, transparent 70%);
-            transform: rotate(45deg);
-            z-index: -1;
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
         }
         
-        .card h2 {
-            color: white;
-            margin-bottom: 15px;
-            font-size: 1.8rem;
-            font-weight: 600;
+        .logo {
+            width: 50px;
+            height: 50px;
+            margin-right: 1rem;
+            border-radius: 50%;
         }
         
-        .description {
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-            font-weight: 300;
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0;
+            color: var(--accent);
+        }
+        
+        .card-description {
             font-size: 1rem;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.8);
         }
         
-        .card-img {
+        .card-image {
             width: 100%;
-            border-radius: 15px;
-            margin: 20px 0;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            transition: transform 0.4s ease;
+            border-radius: calc(var(--border-radius) - 10px);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
         }
         
-        .card:hover .card-img {
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .btn:hover {
+            background: var(--accent);
             transform: scale(1.05);
         }
         
-        .download-btn {
-            background: linear-gradient(45deg, var(--primary), var(--primary-dark));
-            color: white;
-            width: 100%;
-            padding: 15px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+        .btn-vip {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #000;
         }
         
-        .download-btn:hover {
-            background: linear-gradient(45deg, var(--primary-dark), var(--primary));
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 8px 25px rgba(106, 90, 205, 0.4);
-        }
-        
-        .language-selector {
-            position: absolute;
+        .language-toggle {
+            position: fixed;
             top: 20px;
             right: 20px;
-            z-index: 100;
-        }
-        
-        .language-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
+            background: var(--card-bg);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
             cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
+            z-index: 100;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .language-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
+        .discord-widget {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
         }
         
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
+            .container {
+                grid-template-columns: 1fr;
             }
             
-            .card {
-                width: 100%;
-                max-width: 350px;
-            }
-            
-            .language-selector {
-                top: 15px;
-                right: 15px;
+            .discord-widget {
+                height: 400px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="language-selector">
-        <button class="language-btn" id="languageToggle">ES</button>
-    </div>
-
-    <header>
-        <h1>STARHOOK</h1>
-        <a href="https://discord.gg/xX9kpZpT8h" class="btn discord-btn" target="_blank" id="discordBtn">ÚNETE A DISCORD</a>
-    </header>
+    <div class="language-toggle" id="languageToggle">Español</div>
     
     <div class="container">
-        <div class="card-container">
-            <div class="card">
-                <h2 id="cardTitle">STARHOOK VIP</h2>
-                <p class="description" id="cardDescription">DODGE + AIM</p>
-                <img src="https://i.imgur.com/e31nQpC.jpeg" alt="STARHOOK VIP" class="card-img">
-                <button onclick="window.location.href='https://www.dropbox.com/scl/fi/wgshw1cl8ry76oq8rseca/starhook_vip.apk?rlkey=xmj7kc3w21m6as570uipt7rmf&st=vcglp6a6&dl=1'" class="btn download-btn" id="downloadBtn">DESCARGAR AHORA</button>
+        <!-- Discord Card -->
+        <div class="card">
+            <div class="card-header">
+                <img src="https://i.imgur.com/jontEkj.png" alt="STARHOOK Logo" class="logo">
+                <h2 class="card-title">DISCORD</h2>
             </div>
+            <iframe src="https://discord.com/widget?id=1377919537856643132&theme=dark" class="discord-widget" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+        </div>
+        
+        <!-- VIP Card -->
+        <div class="card">
+            <div class="card-header">
+                <img src="https://i.imgur.com/jontEkj.png" alt="STARHOOK Logo" class="logo">
+                <h2 class="card-title">STARHOOK VIP</h2>
+            </div>
+            <p class="card-description"><strong>DODGE + AIM</strong></p>
+            <img src="https://i.imgur.com/p4N2ys8.jpeg" alt="STARHOOK VIP Preview" class="card-image">
+            <a href="https://www.mediafire.com/file/dlx25l9qhggn6do/starhook_vip.apk/file" class="btn btn-vip">DOWNLOAD VIP</a>
+        </div>
+        
+        <!-- Regular Version Card -->
+        <div class="card">
+            <div class="card-header">
+                <img src="https://i.imgur.com/jontEkj.png" alt="STARHOOK Logo" class="logo">
+                <h2 class="card-title">STARHOOK</h2>
+            </div>
+            <p class="card-description">ONLY DODGE</p>
+            <img src="https://i.imgur.com/e31nQpC.jpeg" alt="STARHOOK Preview" class="card-image">
+            <a href="https://www.mediafire.com/file/hrnery8a6hqwibh/starhook.apk/file" class="btn">DOWNLOAD</a>
         </div>
     </div>
 
     <script>
-        // Detección de idioma y textos traducidos
-        const translations = {
-            es: {
-                discordBtn: "ÚNETE A DISCORD",
-                cardTitle: "STARHOOK VIP",
-                cardDescription: "DODGE + AIM",
-                downloadBtn: "DESCARGAR AHORA",
-                languageToggle: "EN"
-            },
-            en: {
-                discordBtn: "JOIN DISCORD",
-                cardTitle: "STARHOOK VIP",
-                cardDescription: "DODGE + AIM",
-                downloadBtn: "DOWNLOAD NOW",
-                languageToggle: "ES"
-            }
+        // Language toggle functionality
+        const languageToggle = document.getElementById('languageToggle');
+        let isEnglish = true;
+        
+        const englishContent = {
+            discordTitle: "DISCORD",
+            vipTitle: "STARHOOK VIP",
+            vipDesc: "DODGE + AIM",
+            vipBtn: "DOWNLOAD VIP",
+            regularTitle: "STARHOOK",
+            regularDesc: "ONLY DODGE",
+            regularBtn: "DOWNLOAD",
+            toggleText: "Español"
         };
-
-        // Función para detectar el idioma del navegador
-        function detectLanguage() {
-            const userLang = navigator.language || navigator.userLanguage;
-            return userLang.startsWith('es') ? 'es' : 'en';
+        
+        const spanishContent = {
+            discordTitle: "DISCORD",
+            vipTitle: "STARHOOK VIP",
+            vipDesc: "ESQUIVA + MIRA",
+            vipBtn: "DESCARGAR VIP",
+            regularTitle: "STARHOOK",
+            regularDesc: "SOLO ESQUIVAR",
+            regularBtn: "DESCARGAR",
+            toggleText: "English"
+        };
+        
+        function updateContent(content) {
+            document.querySelectorAll('.card-title')[0].textContent = content.discordTitle;
+            document.querySelectorAll('.card-title')[1].textContent = content.vipTitle;
+            document.querySelectorAll('.card-description')[0].innerHTML = content.vipDesc === "DODGE + AIM" ? "<strong>DODGE + AIM</strong>" : "<strong>ESQUIVA + MIRA</strong>";
+            document.querySelectorAll('.btn')[1].textContent = content.vipBtn;
+            document.querySelectorAll('.card-title')[2].textContent = content.regularTitle;
+            document.querySelectorAll('.card-description')[1].textContent = content.regularDesc;
+            document.querySelectorAll('.btn')[2].textContent = content.regularBtn;
+            languageToggle.textContent = content.toggleText;
         }
-
-        // Función para cambiar el idioma
-        function setLanguage(lang) {
-            document.getElementById('discordBtn').textContent = translations[lang].discordBtn;
-            document.getElementById('cardTitle').textContent = translations[lang].cardTitle;
-            document.getElementById('cardDescription').textContent = translations[lang].cardDescription;
-            document.getElementById('downloadBtn').textContent = translations[lang].downloadBtn;
-            document.getElementById('languageToggle').textContent = translations[lang].languageToggle;
-            
-            // Guardar preferencia en localStorage
-            localStorage.setItem('preferredLanguage', lang);
-        }
-
-        // Evento para cambiar idioma manualmente
-        document.getElementById('languageToggle').addEventListener('click', function() {
-            const currentLang = this.textContent === 'EN' ? 'en' : 'es';
-            setLanguage(currentLang);
+        
+        languageToggle.addEventListener('click', () => {
+            isEnglish = !isEnglish;
+            updateContent(isEnglish ? englishContent : spanishContent);
         });
-
-        // Inicialización - verificar localStorage primero, luego detectar idioma
-        const preferredLanguage = localStorage.getItem('preferredLanguage') || detectLanguage();
-        setLanguage(preferredLanguage);
     </script>
 </body>
 </html>

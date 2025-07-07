@@ -152,17 +152,20 @@
 .footer-text {
     width: 90%;
     text-align: center;
-    font-size: 5rem; /* tamaño aumentado */
+    font-size: 5rem;
     font-weight: 800;
-    color: white;
+    color: white !important;
+    text-decoration: none !important;
+    filter: blur(3.5px);
     text-shadow:
         0 0 15px rgba(255, 255, 255, 0.7),
         0 0 30px rgba(255, 255, 255, 0.6),
         0 0 60px rgba(255, 255, 255, 0.5);
-    filter: blur(3.5px); /* blur un poco más fuerte */
     pointer-events: none;
     user-select: none;
+    cursor: default !important;
 }
+
 
 
 

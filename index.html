@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Meta tags para compartir en redes sociales -->
     <meta property="og:title" content="STARHOOK">
-    <meta property="og:description" content="STARHOOK - The best tool for Dodge and Aim">
+    <meta property="og:description" content="STARHOOK - Free and Craked cheats Here!">
     <meta property="og:image" content="https://i.imgur.com/jontEkj.png">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
@@ -14,7 +14,7 @@
         :root {
             --primary: #5865F2;
             --secondary: #1E1E1E;
-            --accent: #EB459E;
+            --accent: #FFD700;
             --text: #FFFFFF;
             --card-bg: rgba(30, 30, 30, 0.9);
             --border-radius: 20px;
@@ -133,6 +133,43 @@
             margin-bottom: 1rem;
         }
         
+.footer-blur {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to top, rgba(255, 215, 0, 0.8) 0%, rgba(0, 0, 0, 0.05) 100%);
+    backdrop-filter: blur(35px);
+    -webkit-backdrop-filter: blur(35px);
+    z-index: 99;
+    overflow: hidden;
+}
+
+.footer-text {
+    width: 90%;
+    text-align: center;
+    font-size: 5rem; /* tamaño aumentado */
+    font-weight: 800;
+    color: white;
+    text-shadow:
+        0 0 15px rgba(255, 255, 255, 0.7),
+        0 0 30px rgba(255, 255, 255, 0.6),
+        0 0 60px rgba(255, 255, 255, 0.5);
+    filter: blur(3.5px); /* blur un poco más fuerte */
+    pointer-events: none;
+    user-select: none;
+}
+
+
+
+
+
+
+
         @media (max-width: 768px) {
             .container {
                 grid-template-columns: 1fr;
@@ -151,83 +188,84 @@
         <!-- Discord Card -->
 
         
-        <!-- STARHOOK v2 (Early Access) -->
+
 <div class="card">
     <div class="card-header">
         <img src="https://i.imgur.com/jontEkj.png" alt="STARHOOK Logo" class="logo">
-        <h2 class="card-title">STARHOOK v2 (Early Access)</h2>
+        <h2 class="card-title">AimWare Crack</h2>
     </div>
-    <p class="card-description"><strong>AIM + DODGE + XRAY + CRASH</strong></p>
-    <img src="https://i.imgur.com/XlLnykH.png" alt="STARHOOK v2 Preview" class="card-image">
-    <a href="https://revolut.me/r/dFE7zVlKKj" class="btn btn-vip">JOIN EARLY ACCESS</a>
+    <p class="card-description"><strong>(senseteam.dll)</strong></p>
+    <img src="https://imgur.com/Uqo778i.png" alt="STARHOOK v2 Preview" class="card-image">
+    <a href="https://www.mediafire.com/file/90svnk2zoia2cgr/aimware.rar/file" class="btn">DOWNLOAD</a>
 </div>
         
         
-        <!-- VIP Card -->
-        <div class="card">
-            <div class="card-header">
-                <img src="https://i.imgur.com/jontEkj.png" alt="STARHOOK Logo" class="logo">
-                <h2 class="card-title">STARHOOK VIP</h2>
-            </div>
-            <p class="card-description"><strong>DODGE + AIM</strong></p>
-            <img src="https://i.imgur.com/p4N2ys8.jpeg" alt="STARHOOK VIP Preview" class="card-image">
-            <a href="https://www.mediafire.com/file/dlx25l9qhggn6do/starhook_vip.apk/file" class="btn">DOWNLOAD VIP</a>
-        </div>
-        
-        <!-- Regular Version Card -->
-        <div class="card">
-            <div class="card-header">
-                <img src="https://i.imgur.com/jontEkj.png" alt="STARHOOK Logo" class="logo">
-                <h2 class="card-title">STARHOOK</h2>
-            </div>
-            <p class="card-description">ONLY DODGE</p>
-            <img src="https://i.imgur.com/e31nQpC.jpeg" alt="STARHOOK Preview" class="card-image">
-            <a href="https://www.mediafire.com/file/hrnery8a6hqwibh/starhook.apk/file" class="btn">DOWNLOAD</a>
-        </div>
-    </div>
 
-    <script>
-        // Language toggle functionality
-        const languageToggle = document.getElementById('languageToggle');
-        let isEnglish = true;
-        
-        const englishContent = {
-            discordTitle: "DISCORD",
-            vipTitle: "STARHOOK VIP",
-            vipDesc: "DODGE + AIM",
-            vipBtn: "DOWNLOAD VIP",
-            regularTitle: "STARHOOK",
-            regularDesc: "ONLY DODGE",
-            regularBtn: "DOWNLOAD",
-            toggleText: "Español"
-        };
-        
-        const spanishContent = {
-            discordTitle: "DISCORD",
-            vipTitle: "STARHOOK VIP",
-            vipDesc: "ESQUIVA + MIRA",
-            vipBtn: "DESCARGAR VIP",
-            regularTitle: "STARHOOK",
-            regularDesc: "SOLO ESQUIVAR",
-            regularBtn: "DESCARGAR",
-            toggleText: "English"
-        };
-        
-        function updateContent(content) {
-            document.querySelectorAll('.card-title')[0].textContent = content.discordTitle;
-            document.querySelectorAll('.card-title')[1].textContent = content.vipTitle;
-            document.querySelectorAll('.card-description')[0].innerHTML = content.vipDesc === "DODGE + AIM" ? "<strong>DODGE + AIM</strong>" : "<strong>ESQUIVA + MIRA</strong>";
-            document.querySelectorAll('.btn')[1].textContent = content.vipBtn;
-            document.querySelectorAll('.card-title')[2].textContent = content.regularTitle;
-            document.querySelectorAll('.card-description')[1].textContent = content.regularDesc;
-            document.querySelectorAll('.btn')[2].textContent = content.regularBtn;
-            languageToggle.textContent = content.toggleText;
-        }
-        
-        languageToggle.addEventListener('click', () => {
-            isEnglish = !isEnglish;
-            updateContent(isEnglish ? englishContent : spanishContent);
-        });
-    </script>
+        <div class="card">
+            <div class="card-header">
+                <img src="https://i.imgur.com/jontEkj.png" alt="STARHOOK Logo" class="logo">
+                <h2 class="card-title">Extreme Injector [v3]</h2>
+            </div>
+            <p class="card-description"><strong>Have alot of options.</strong></p>
+            <img src="https://i.imgur.com/UeJOGt9.png" alt="STARHOOK VIP Preview" class="card-image">
+            <a href="https://www.mediafire.com/file/q45wjqo4i3ks0pk/Extreme_Injector.zip/file" class="btn">DOWNLOAD</a>
+        </div>
+<footer class="footer-blur">
+    <div class="footer-text">pass: hvh.net</div>
+</footer>
+
+
+
+
+
+
+   <script>
+    // Language toggle functionality
+    const languageToggle = document.getElementById('languageToggle');
+    let isEnglish = true;
+
+    const englishContent = {
+        card1Title: "AimWare Crack",
+        card1Desc: "(senseteam.dll)",
+        card1Btn: "DOWNLOAD",
+        card2Title: "Extreme Injector [v3]",
+        card2Desc: "Have a lot of options.",
+        card2Btn: "DOWNLOAD",
+        toggleText: "Español"
+    };
+
+    const spanishContent = {
+        card1Title: "AimWare Crack",
+        card1Desc: "(senseteam.dll)",
+        card1Btn: "DESCARGAR",
+        card2Title: "Extreme Injector [v3]",
+        card2Desc: "Tiene muchas opciones.",
+        card2Btn: "DESCARGAR",
+        toggleText: "English"
+    };
+
+    function updateContent(content) {
+        const cards = document.querySelectorAll('.card');
+
+        // Card 1: AimWare
+        cards[0].querySelector('.card-title').textContent = content.card1Title;
+        cards[0].querySelector('.card-description').innerHTML = `<strong>${content.card1Desc}</strong>`;
+        cards[0].querySelector('.btn').textContent = content.card1Btn;
+
+        // Card 2: Injector
+        cards[1].querySelector('.card-title').textContent = content.card2Title;
+        cards[1].querySelector('.card-description').innerHTML = `<strong>${content.card2Desc}</strong>`;
+        cards[1].querySelector('.btn').textContent = content.card2Btn;
+
+        // Button text
+        languageToggle.textContent = content.toggleText;
+    }
+
+    languageToggle.addEventListener('click', () => {
+        isEnglish = !isEnglish;
+        updateContent(isEnglish ? englishContent : spanishContent);
+    });
+</script>
+
 </body>
 </html>

@@ -226,12 +226,12 @@
   overflow: hidden;
   z-index: 2;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease; /* transición suave */
+  transition: transform 0.3s ease;
 }
 
-.card:hover .decor {
-  transform: scale(1.1); /* agrandar un 10% */
-  z-index: 10; /* para que esté por encima */
+.card .decor.active {
+  transform: scale(1.4); /* agranda 40% */
+  z-index: 10;
 }
 
 .card .decor img {
@@ -239,8 +239,9 @@
   height: auto;
   object-fit: cover;
   border-radius: 16px;
-  transition: inherit; /* que la imagen también tenga la transición */
+  transition: inherit;
 }
+
 
       .search-desktop {
         display: block;

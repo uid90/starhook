@@ -27,15 +27,15 @@ async function loadCards() {
         </button>
       </div>
     `;
-    container.appendChild(card);
-  });
 
-  // Agregar evento click SOLO a .decor para toggle 'active'
-  document.querySelectorAll('.card .decor').forEach(decor => {
-    decor.addEventListener('click', e => {
-      e.stopPropagation(); // evita que se propague el click a la tarjeta
+    // Añadir listener al .decor dentro de esta tarjeta
+    const decor = card.querySelector('.decor');
+    decor.addEventListener('click', (e) => {
+      e.stopPropagation(); // para que no suba el evento
       decor.classList.toggle('active');
     });
+
+    container.appendChild(card);
   });
 }
 

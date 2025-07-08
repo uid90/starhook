@@ -30,13 +30,11 @@ async function loadCards() {
     container.appendChild(card);
   });
 
-  // Agregar evento click para toggle 'active' en .decor después de crear las tarjetas
-  document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', () => {
-      const decor = card.querySelector('.decor');
-      if (decor) {
-        decor.classList.toggle('active');
-      }
+  // Agregar evento click SOLO a .decor para toggle 'active'
+  document.querySelectorAll('.card .decor').forEach(decor => {
+    decor.addEventListener('click', e => {
+      e.stopPropagation(); // evita que se propague el click a la tarjeta
+      decor.classList.toggle('active');
     });
   });
 }

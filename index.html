@@ -226,12 +226,8 @@
   overflow: hidden;
   z-index: 2;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
   transition: transform 0.3s ease;
-}
-
-.card .decor.active {
-  transform: scale(1.4); /* agranda 40% */
-  z-index: 10;
 }
 
 .card .decor img {
@@ -241,6 +237,52 @@
   border-radius: 16px;
   transition: inherit;
 }
+
+/* Modal overlay con scroll */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  overflow: auto; /* para scroll si la imagen es grande */
+}
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal-overlay img {
+  max-width: none;
+  max-height: none;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.3);
+}
+.modal-close {
+  position: fixed;
+  top: 20px; right: 30px;
+  font-size: 32px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  user-select: none;
+  z-index: 10000;
+  background: rgba(0,0,0,0.5);
+  border-radius: 50%;
+  width: 40px; height: 40px;
+  text-align: center;
+  line-height: 40px;
+  transition: background-color 0.2s ease;
+}
+.modal-close:hover {
+  background: rgba(255,0,0,0.8);
+}
+
 
 
       .search-desktop {
@@ -327,6 +369,13 @@
   <footer class="footer-blur">
     <div class="footer-text">pass: chef</div>
   </footer>
+
+<!-- Modal para mostrar la imagen grande -->
+<div id="modalOverlay" class="modal-overlay" style="display:none;">
+  <span id="modalClose" class="modal-close">&times;</span>
+  <img id="modalImage" src="" alt="Imagen ampliada" />
+</div>
+
 
   <script src="main.js"></script>
 </body>

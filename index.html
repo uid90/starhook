@@ -1,264 +1,321 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Meta tags para compartir en redes sociales -->
-    <meta property="og:title" content="STARHOOK">
-    <meta property="og:description" content="STARHOOK - Free and Cracked cheats Here!">
-    <meta property="og:image" content="https://i.imgur.com/jontEkj.png">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <title>STARHOOK</title>
-    <style>
-        :root {
-            --primary: #5865F2;
-            --secondary: #1E1E1E;
-            --accent: #FFD700;
-            --text: #FFFFFF;
-            --card-bg: rgba(30, 30, 30, 0.9);
-            --border-radius: 20px;
-            --blur: 10px;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ZoneCraft UI</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
 
-        body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background-color: #000000;
-            color: var(--text);
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    body {
+      background-color: #000;
+      color: white;
+      padding-bottom: 140px;
+    }
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 2rem auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(20, 20, 20, 0.6);
+      backdrop-filter: blur(10px);
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1000;
+      flex-wrap: wrap;
+    }
 
-        .card {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+    header .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
-        }
+    header .logo span {
+      font-weight: bold;
+      font-size: 20px;
+    }
 
-        .card-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
+    header .right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-left: auto;
+    }
 
-        .logo {
-            width: 50px;
-            height: 50px;
-            margin-right: 1rem;
-            border-radius: 50%;
-        }
+    .search-desktop input,
+    .search-mobile input {
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      outline: none;
+      font-size: 16px;
+      padding: 10px 15px;
+    }
 
-        .card-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin: 0;
-            color: var(--accent);
-        }
+    .search-desktop input::placeholder,
+    .search-mobile input::placeholder {
+      color: #fff;
+      opacity: 0.7;
+    }
 
-        .card-description {
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-            color: rgba(255, 255, 255, 0.8);
-        }
+    .search-desktop {
+      display: none;
+    }
 
-        .card-image {
-            width: 100%;
-            border-radius: calc(var(--border-radius) - 10px);
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-        }
+    .search-mobile {
+      display: block;
+      position: sticky;
+      top: 65px;
+      z-index: 999;
+      padding: 10px 20px;
+      background: transparent;
+      text-align: center;
+    }
 
-        .btn {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-align: center;
-            width: 100%;
-            box-sizing: border-box;
-        }
+    .search-mobile input {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+    }
 
-        .btn:hover {
-            background: var(--accent);
-            transform: scale(1.05);
-        }
+    .content {
+      margin-top: 130px;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
 
-        .btn-vip {
-            background: linear-gradient(45deg, #FFD700, #FFA500);
-            color: #000;
-        }
+    .card {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      height: 200px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
-        .language-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--card-bg);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            cursor: pointer;
-            z-index: 100;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+    .card img.bg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.4) blur(2px);
+    }
 
-        .discord-widget {
-            width: 100%;
-            height: 500px;
-            border: none;
-            border-radius: var(--border-radius);
-            margin-bottom: 1rem;
-        }
+    .card .info {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 20px;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+      z-index: 1;
+    }
 
-        /* Footer */
-        .footer-blur {
-            width: 100%;
-            height: 160px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(to top, rgba(255, 215, 0, 0.8) 0%, rgba(0, 0, 0, 0.05) 100%);
-            backdrop-filter: blur(35px);
-            -webkit-backdrop-filter: blur(35px);
-            overflow: hidden;
-            position: relative;
-            margin-top: auto;
-            z-index: 1;
-        }
+    .card h2 {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
 
-        .footer-text {
-            width: 90%;
-            text-align: center;
-            font-size: 5rem;
-            font-weight: 800;
-            color: white !important;
-            text-decoration: none !important;
-            filter: blur(3.5px);
-            text-shadow:
-                0 0 15px rgba(255, 255, 255, 0.7),
-                0 0 30px rgba(255, 255, 255, 0.6),
-                0 0 60px rgba(255, 255, 255, 0.5);
-            pointer-events: none;
-            user-select: none;
-            cursor: default !important;
-        }
+    .card p {
+      font-size: 14px;
+      color: #ccc;
+      margin-bottom: 10px;
+    }
 
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
+    .card a {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 8px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: background-color 0.3s ease, color 0.3s ease;
+      box-shadow: 0 0 8px rgba(255,255,255,0.2);
+      max-width: fit-content;
+      width: auto;
+    }
 
-            .discord-widget {
-                height: 400px;
-            }
+    .card a:hover {
+      background: rgba(255, 0, 0, 0.4);
+      color: #ff4c4c;
+      box-shadow: 0 0 12px rgba(255, 0, 0, 0.7);
+      text-decoration: none;
+    }
 
-            .footer-text {
-                font-size: 3rem;
-            }
+    .card .decor {
+      display: none;
+    }
 
-            .footer-blur {
-                height: 120px;
-            }
-        }
-    </style>
+    .card-buttons {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      display: flex;
+      gap: 8px;
+      z-index: 2;
+    }
+
+    .status-btn {
+      width: 28px;
+      height: 28px;
+      border: none;
+      border-radius: 50%;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      cursor: default;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    .status-btn.updated {
+      background-color: #28a745;
+    }
+
+    .status-btn.updated:hover {
+      background-color: #1e7e34;
+    }
+
+    .status-btn.outdated {
+      background-color: #dc3545;
+    }
+
+    .status-btn.outdated:hover {
+      background-color: #a71d2a;
+    }
+
+    @media (min-width: 768px) {
+      .card .decor {
+        display: block;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        width: 100px;
+        height: auto;
+        border-radius: 16px;
+        overflow: hidden;
+        z-index: 2;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      }
+
+      .card .decor img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 16px;
+      }
+
+      .search-desktop {
+        display: block;
+      }
+
+      .search-mobile {
+        display: none;
+      }
+
+      .content {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 767px) {
+      .search-desktop {
+        display: none;
+      }
+
+      .search-mobile {
+        display: block;
+      }
+
+      .content {
+        margin-top: 180px;
+      }
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: linear-gradient(to top, #7e0000, transparent);
+      text-align: center;
+      padding: 20px 0 10px;
+    }
+
+    .footer-text {
+      font-size: clamp(3rem, 5vw, 7rem);
+      font-weight: 800;
+      color: white !important;
+      text-decoration: none !important;
+      filter: blur(3.5px);
+      text-shadow:
+        0 0 15px rgba(255, 255, 255, 0.7),
+        0 0 30px rgba(255, 255, 255, 0.6),
+        0 0 60px rgba(255, 255, 255, 0.5);
+      pointer-events: none;
+      user-select: none;
+      cursor: default !important;
+      text-align: center;
+      width: 100%;
+      transition: filter 0.3s ease;
+    }
+  </style>
 </head>
 <body>
-    <div class="language-toggle" id="languageToggle">Español</div>
 
-    <div class="container">
-        <!-- CARD 1 -->
-        <div class="card">
-            <div class="card-header">
-                <img src="https://i.imgur.com/jontEkj.png" alt="STARHOOK Logo" class="logo">
-                <h2 class="card-title">AimWare Crack</h2>
-            </div>
-            <p class="card-description"><strong>(senseteam.dll)</strong></p>
-            <img src="https://imgur.com/Uqo778i.png" alt="STARHOOK v2 Preview" class="card-image">
-            <a href="https://www.mediafire.com/file/90svnk2zoia2cgr/aimware.rar/file" class="btn">DOWNLOAD</a>
-        </div>
-
-        <!-- CARD 2 -->
-        <div class="card">
-            <div class="card-header">
-                <img src="https://i.imgur.com/jontEkj.png" alt="STARHOOK Logo" class="logo">
-                <h2 class="card-title">Extreme Injector [v3]</h2>
-            </div>
-            <p class="card-description"><strong>Have a lot of options.</strong></p>
-            <img src="https://i.imgur.com/UeJOGt9.png" alt="STARHOOK VIP Preview" class="card-image">
-            <a href="https://www.mediafire.com/file/q45wjqo4i3ks0pk/Extreme_Injector.zip/file" class="btn">DOWNLOAD</a>
-        </div>
+  <header>
+    <div class="logo">
+      <i class="fas fa-cube"></i>
+      <span>StarHook</span>
     </div>
+    <div class="right">
+      <div class="search-desktop">
+        <input type="text" id="searchInputDesktop" placeholder="Buscar eventos...">
+      </div>
+      <i class="fas fa-search"></i>
+      <i class="fas fa-bars"></i>
+      <i class="fas fa-user-circle"></i>
+    </div>
+  </header>
 
-    <!-- FOOTER -->
-    <footer class="footer-blur">
-        <div class="footer-text">pass: hvh.net</div>
-    </footer>
+  <div class="search-mobile">
+    <input type="text" id="searchInputMobile" placeholder="Buscar eventos...">
+  </div>
 
-    <script>
-        const languageToggle = document.getElementById('languageToggle');
-        let isEnglish = true;
+  <div class="content" id="cardContainer"></div>
 
-        const englishContent = {
-            card1Title: "AimWare Crack",
-            card1Desc: "(senseteam.dll)",
-            card1Btn: "DOWNLOAD",
-            card2Title: "Extreme Injector [v3]",
-            card2Desc: "Have a lot of options.",
-            card2Btn: "DOWNLOAD",
-            toggleText: "Español"
-        };
+  <footer class="footer-blur">
+    <div class="footer-text">pass: hvh.net</div>
+  </footer>
 
-        const spanishContent = {
-            card1Title: "AimWare Crack",
-            card1Desc: "(senseteam.dll)",
-            card1Btn: "DESCARGAR",
-            card2Title: "Extreme Injector [v3]",
-            card2Desc: "Tiene muchas opciones.",
-            card2Btn: "DESCARGAR",
-            toggleText: "English"
-        };
-
-        function updateContent(content) {
-            const cards = document.querySelectorAll('.card');
-
-            cards[0].querySelector('.card-title').textContent = content.card1Title;
-            cards[0].querySelector('.card-description').innerHTML = `<strong>${content.card1Desc}</strong>`;
-            cards[0].querySelector('.btn').textContent = content.card1Btn;
-
-            cards[1].querySelector('.card-title').textContent = content.card2Title;
-            cards[1].querySelector('.card-description').innerHTML = `<strong>${content.card2Desc}</strong>`;
-            cards[1].querySelector('.btn').textContent = content.card2Btn;
-
-            languageToggle.textContent = content.toggleText;
-        }
-
-        languageToggle.addEventListener('click', () => {
-            isEnglish = !isEnglish;
-            updateContent(isEnglish ? englishContent : spanishContent);
-        });
-    </script>
+  <script src="main.js"></script>
 </body>
 </html>

@@ -215,25 +215,32 @@
     }
 
     @media (min-width: 768px) {
-      .card .decor {
-        display: block;
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        width: 100px;
-        height: auto;
-        border-radius: 16px;
-        overflow: hidden;
-        z-index: 2;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-      }
+.card .decor {
+  display: block;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 100px;
+  height: auto;
+  border-radius: 16px;
+  overflow: hidden;
+  z-index: 2;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease; /* transición suave */
+}
 
-      .card .decor img {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-        border-radius: 16px;
-      }
+.card:hover .decor {
+  transform: scale(1.1); /* agrandar un 10% */
+  z-index: 10; /* para que esté por encima */
+}
+
+.card .decor img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 16px;
+  transition: inherit; /* que la imagen también tenga la transición */
+}
 
       .search-desktop {
         display: block;

